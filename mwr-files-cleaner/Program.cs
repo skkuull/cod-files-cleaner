@@ -19,7 +19,7 @@ namespace mwr_files_cleaner
 
         static void Main(string[] args)
         {
-            if (!File.Exists("patch_common_mp.ff") && !File.Exists("h1_mp64_ship.exe") || !File.Exists("patch_common.ff") && !File.Exists("h1_sp64_ship.exe"))
+            if (!File.Exists("common_mp.ff") && !File.Exists("s2_mp64_ship.exe") || !File.Exists("common.ff") && !File.Exists("s2_sp64_ship.exe"))
             {
                 Console.WriteLine("Please put the mwr-files-cleaner.exe in your game folder\nor your game is already cleaned up.\n");
                 Environment.Exit(0);
