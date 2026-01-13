@@ -32,7 +32,7 @@ namespace cod_files_cleaner
         static void DisplayMenu()
         {
             Console.Clear();
-            Console.WriteLine("[ 1 ] Clean COD Files (MWR/WWII)");
+            Console.WriteLine("[ 1 ] Clean COD Files (MWR/IW/WWII)");
             Console.WriteLine("[ 2 ] Revert Cleaning");
             Console.Write("\ncod-files-cleaner:~$ ");
         }
@@ -60,20 +60,12 @@ namespace cod_files_cleaner
         {
             return File.Exists("h1_mp64_ship.exe") ||
                    File.Exists("h1_sp64_ship.exe") ||
+                   File.Exists("iw6mp64_MSStore_ship.exe") ||
+                   File.Exists("iw6sp64_MSStore_ship.exe") ||
+                   File.Exists("iw7uwp_ship.exe") ||
+                   File.Exists("iw7_ship.exe") ||
                    File.Exists("s2_mp64_ship.exe") ||
                    File.Exists("s2_sp64_ship.exe");
-        }
-
-        static bool IsMWR()
-        {
-            return File.Exists("patch_common_mp.ff") && File.Exists("h1_mp64_ship.exe") ||
-                   File.Exists("patch_common.ff") && File.Exists("h1_sp64_ship.exe");
-        }
-
-        static bool IsS2()
-        {
-            return File.Exists("common_mp.ff") && File.Exists("s2_mp64_ship.exe") ||
-                   File.Exists("common.ff") && File.Exists("s2_sp64_ship.exe");
         }
 
         static void CreateRequiredDirectories()
@@ -94,6 +86,9 @@ namespace cod_files_cleaner
         static void MoveFilesToZone()
         {
             MoveFilesByExtension("*.ff", ".\\zone");
+            MoveFilesByExtension("*.ffd", ".\\zone");
+            MoveFilesByExtension("*.sabl", ".\\zone");
+            MoveFilesByExtension("*.sabs", ".\\zone");
             MoveFilesByExtension("*.bik", ".\\raw\\video");
             MoveFilesByExtension("*.pak", ".\\zone");
         }
@@ -147,6 +142,9 @@ namespace cod_files_cleaner
         static void MoveFilesBackToOriginalLocations()
         {
             MoveFilesBackByExtension("zone/*.ff");
+            MoveFilesBackByExtension("zone/*.ffd");
+            MoveFilesBackByExtension("zone/*.sabl");
+            MoveFilesBackByExtension("zone/*.sabs");
             MoveFilesBackByExtension("raw/video/*.bik");
             MoveFilesBackByExtension("zone/*.pak");
         }
